@@ -28,10 +28,10 @@ public class PicturePanel extends JComponent {
     */    
     public void paintComponent(Graphics g) {
     	if(this.image != null){
-	    g.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), null);
-	}else{
-	    g.setColor(Color.BLACK);
-	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
-	}
+            g.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), null);
+        }else{
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, this.getWidth(), this.getHeight());
+        }
     }
 }
