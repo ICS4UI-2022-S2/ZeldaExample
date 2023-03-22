@@ -28,7 +28,7 @@ public class Scene {
             // load in the image from the filename
             this.image = null;
             try{
-                this.image = ImageIO.read(new File(filename));
+                this.image = ImageIO.read(new File("images//" + filename));
             }catch(Exception e){
                 e.printStackTrace();
             }

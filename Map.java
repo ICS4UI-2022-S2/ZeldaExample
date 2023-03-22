@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
+import java.awt.image.BufferedImage;
 
 public class Map {
     private Scene[] scenes;
@@ -55,6 +56,61 @@ public class Map {
                                 moveWest, description);
         }
 
+        // find the starting scene
+        this.currentScene = this.findScene(this.currentRow, this.currentCol);
+
+    }
+
+    public Scene findScene(int row, int col){
+        for(int i = 0; i < this.scenes.length; i++){
+            Scene tempScene = this.scenes[i];
+            // does the scene match the row and col we are looking for
+            if(tempScene.getRow() == row && tempScene.getCol() == col){
+                return tempScene;
+            }
+        }
+        // if we went through all scenes, no match found
+        return null;
+    }
+
+    public void moveNorth(){
+        // can we move up?
+        if(this.currentScene.canMoveNorth()){
+            this.currentRow--;
+            this.currentScene = this.findScene(this.currentRow, this.currentCol);
+        }
+    }
+
+    public void moveEast(){
+        // can we move right?
+        if(this.currentScene.canMoveEast()){
+            this.currentCol++;
+            this.currentScene = this.findScene(this.currentRow, this.currentCol);
+        }
+    }
+
+    public void moveSouth(){
+        // can we move down?
+        if(this.currentScene.canMoveSouth()){
+            this.currentRow++;
+            this.currentScene = this.findScene(this.currentRow, this.currentCol);
+        }
+    }
+
+    public void moveWest(){
+        // can we move left?
+        if(this.currentScene.canMoveWest()){
+            this.currentCol--;
+            this.currentScene = this.findScene(this.currentRow, this.currentCol);
+        }
+    }
+
+    public BufferedImage getImage(){
+        return this.currentScene.getImage();
+    }
+
+    public String getDescription(){
+        return this.currentScene.getDescription();
     }
 
 }

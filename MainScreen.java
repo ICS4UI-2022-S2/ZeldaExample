@@ -19,13 +19,20 @@ public class MainScreen extends JFrame implements ActionListener{
   private JTextField infoText;
   private PicturePanel picturePanel;
 
+  private Controller controller;
+
 
   /**
   * Constructor for the main screen
   */
   public MainScreen(){
     initializeComponents();
-
+    // links the screen and controller together
+    controller = new Controller(this, "pics.txt");
+    // show the first scene
+    this.picturePanel.setImage(this.controller.getImage());
+    // set the description
+    this.infoText.setText(this.controller.getDescription());
   }
   
   
@@ -89,7 +96,7 @@ public class MainScreen extends JFrame implements ActionListener{
     this.setVisible(true);
     
 
-
+    
   
   }
 
@@ -103,7 +110,22 @@ public class MainScreen extends JFrame implements ActionListener{
     // determine the action command
     String command = e.getActionCommand();
    
-    
+
+    // doing the correct movement
+    if(command.equals("moveNorth")){
+      this.controller.moveNorth();
+    }else if(command.equals("moveEast")){
+      this.controller.moveEast();
+    }else if(command.equals("moveSouth")){
+      this.controller.moveSouth();
+    }else if(command.equals("moveWest")){
+      this.controller.moveWest();
+    }
+
+    // update the picture after the movement
+    this.picturePanel.setImage(this.controller.getImage());
+    // set the description
+    this.infoText.setText(this.controller.getDescription());
 
   }
 
